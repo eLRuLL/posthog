@@ -17,7 +17,7 @@ import { PeopleModal } from './PeopleModal'
 import { trendsLogic, ViewType } from './trendsLogic'
 import { ChartFilter } from 'lib/components/ChartFilter'
 import { userLogic } from 'scenes/userLogic'
-import { Tabs } from 'antd'
+import { Tabs, InfoCircleOutline, Tooltip } from 'antd'
 import { SessionFilter } from 'lib/components/SessionsFilter'
 
 const { TabPane } = Tabs
@@ -62,7 +62,12 @@ export function Trends() {
                                 style={{ marginBottom: 0 }}
                             />
                             <hr />
-                            <h4 className="secondary">Break down by</h4>
+                            <h4 className="secondary">
+                                Break down by
+                                <Tooltip title="Breakdown allows you to see the volume of events for each variation of that property. For example, breaking down by $current_url will give you the event volume for each url your users have visited.">
+                                    <small className="info">info</small>
+                                </Tooltip>
+                            </h4>
                             <div className="select-with-close">
                                 <BreakdownFilter
                                     properties={eventProperties}
@@ -77,7 +82,17 @@ export function Trends() {
                                 )}
                             </div>
                             <hr />
-                            <h4 className="secondary">Shown as</h4>
+                            <h4 className="secondary">
+                                Shown as
+                                <Tooltip
+                                    title='
+                                    Stickiness shows you how many days users performed an action within the timeframe. If a user
+                                    performed an action on Monday and came back and did it again on Friday, it would be listed
+                                    as "2 days" in the chart.'
+                                >
+                                    <small className="info">info</small>
+                                </Tooltip>
+                            </h4>
                             <ShownAsFilter
                                 shown_as={filters.shown_as}
                                 onChange={shown_as => setFilters({ shown_as })}
